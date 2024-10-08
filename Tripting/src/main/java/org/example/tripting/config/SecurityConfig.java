@@ -29,6 +29,7 @@ public class SecurityConfig {
                         authorizeRequests
                                 .requestMatchers( "/").permitAll()
                                 .requestMatchers( "/users/**").permitAll()
+                                .requestMatchers( "/point/**").permitAll()
                                 .anyRequest().authenticated()
                 );
         return  http.build();
