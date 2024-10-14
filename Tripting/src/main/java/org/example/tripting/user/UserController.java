@@ -21,12 +21,12 @@ public class UserController {
 
     // 새로운 사용자 생성
     @PostMapping
-    public User signUp(@RequestBody User user) {
-        return userService.signUp(user);
+    public User signup(@RequestBody User user) {
+        return userService.signup(user);
     }
 
     // 특정 아이디를 가진 사용자 조회
-    @GetMapping("/UserId/{userId}")
+    @GetMapping("/userid/{userId}")
     public User getUserByUserId(@PathVariable String userId) {
         return userService.getUserByUserId(userId);
     }
@@ -45,7 +45,7 @@ public class UserController {
     }
 
     // 특정 아이디를 가진 사용자의 존재 여부 확인
-    @GetMapping("/UserId/{userId}/exists")
+    @GetMapping("/userid/{userId}/exists")
     public boolean isUserIdExist(@PathVariable String userId) {
         return userService.isUserIdExist(userId);
     }

@@ -19,7 +19,7 @@
         }
 
         // 특정 아이디를 가진 사용자 조회
-        @GetMapping("/UserId/{userId}")
+        @GetMapping("/userid/{userId}")
         public Point getUserByUserId(@PathVariable String userId) {
             return pointService.getUserByUserId(userId);
         }

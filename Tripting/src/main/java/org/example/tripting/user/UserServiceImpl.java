@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 
     // 사용자 회원가입 메서드
     @Override
-    public User signUp(User user) {
+    public User signup(User user) {
         // 사용자 비밀번호 해싱
         String hashedPassword = bCryptPasswordEncoder.encode(user.getUserPw());
         user.setUserPw(hashedPassword);
