@@ -10,8 +10,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Setter
 public class Place {
 
+    @Id
+    private String ID; //ID
+
     private String place_name; // 장소 이름
-    private String place_img_url; //장소 이미지 URL
+    private String placeImgUrl; //장소 이미지 URL
     private String address; // 장소 주소
     private String explain; // 장소 설명
 }

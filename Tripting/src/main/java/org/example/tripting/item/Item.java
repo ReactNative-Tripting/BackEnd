@@ -11,9 +11,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Item {
 
     @Id
-    private String item_id; //상품 ID
+    private String id; //ID
 
-    private String item_name; //상품명
-    private String item_value; //상품 가격
-    private String item_img_url;//아이템 사진 URL
+    private String itemId; //상품 ID
+
+    private String itemName; //상품명
+    private String itemValue; //상품 가격
+    private String itemImgUrl;//아이템 사진 URL
 }

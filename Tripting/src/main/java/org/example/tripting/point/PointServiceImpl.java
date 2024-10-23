@@ -1,37 +1,43 @@
 package org.example.tripting.point;
 
+import org.example.tripting.user.User;
+import org.example.tripting.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PointServiceImpl implements PointService {
 
     private final PointRepository pointRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final UserService userService; // UserService 주입
 
-    // @Autowired: Spring이 자동으로 필요한 의존성을 주입합니다.
     @Autowired
-    public PointServiceImpl(PointRepository pointRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public PointServiceImpl(PointRepository pointRepository, UserService userService) {
         this.pointRepository = pointRepository;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.userService = userService; // UserService 초기화
     }
 
-    // 사용자 포인트 적립
     @Override
-    public Point pointEarn(Point point, Point user) {
-        // userId로 기존 사용자 정보 조회
-        Point existingPoint = pointRepository.findByUserId(user.getUser_id());
+    public Point pointEarn(Point point) {
+        // 사용자 객체가 null인지 확인
+        if (point.getUser() == null) {
+            throw new IllegalArgumentException("User not found");
+        }
+
+        // User 객체의 ID로 기존 포인트 조회
+        Point existingPoint = pointRepository.findByUserId(point.getUser().getId());
 
         if (existingPoint != null) {
             // 기존 포인트에 새로운 포인트 추가
             existingPoint.setPoint(existingPoint.getPoint() + point.getPoint());
             return pointRepository.save(existingPoint); // 업데이트된 포인트 저장
         } else {
-            // 사용자가 없으면 에러 반환
-            throw new IllegalArgumentException("User not found");
+            // 새 포인트 객체 생성 후 userId 설정
+            point.setUserId(point.getUser().getUserId()); // userId 설정
+            return pointRepository.save(point); // 새 포인트 저장
         }
     }
+
 
     // 사용자 아이디로 사용자 정보를 가져오는 메서드
     @Override
@@ -48,7 +54,8 @@ public class PointServiceImpl implements PointService {
         }
 
         // userId로 기존 사용자 정보 조회
-        Point existingPoint = pointRepository.findByUserId(point.getUser_id());
+        // 유저 확인 로직 제거
+        Point existingPoint = pointRepository.findByUserId(point.getUser().getUserId());
 
         if (existingPoint != null) {
             // 포인트가 충분한지 확인
@@ -61,7 +68,7 @@ public class PointServiceImpl implements PointService {
             return pointRepository.save(existingPoint); // 업데이트된 포인트 저장
         } else {
             // 사용자가 없으면 IllegalArgumentException 던짐
-            throw new IllegalArgumentException("User not found with ID: " + point.getUser_id());
+            throw new IllegalArgumentException("User not found with ID: " + point.getUser().getUserId());
         }
     }
 }

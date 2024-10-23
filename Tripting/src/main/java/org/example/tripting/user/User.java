@@ -12,11 +12,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User {
 
     @Id
-    private String user_id; // 사용자 아이디
+    private String id; //ID
+
+    private String userId; // 사용자 아이디
 
     private String username; // 사용자 이름
     private String password; // 사용자 비밀번호
-    private Integer phonenum; // 사용자 전화번호
+    private Integer phoneNum; // 사용자 전화번호
     private String email; // 사용자 이메일
     private String sex;// 성별
 }

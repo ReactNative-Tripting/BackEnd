@@ -1,10 +1,9 @@
 package org.example.tripting.payment;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.util.Date;
 
@@ -13,10 +12,10 @@ import java.util.Date;
 @Setter
 public class Payment {
 
-    @Id
-    private String user_id; // 사용자 ID
+    @DocumentReference
+    private String userId; // 사용자 ID
 
-    private String  item_name; // 상품명
-    private Integer item_value; // 상품 가격
-    private Date buy_date; //결제일
+    private String itemName; // 상품명
+    private Integer itemValue; // 상품 가격
+    private Date buyDate; //결제일
 }
