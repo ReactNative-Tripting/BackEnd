@@ -1,6 +1,5 @@
 package org.example.tripting.point;
 
-import org.example.tripting.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,7 +21,7 @@ public class PointServiceImpl implements PointService {
     @Override
     public Point pointEarn(Point point, Point user) {
         // userId로 기존 사용자 정보 조회
-        Point existingPoint = pointRepository.findByUserId(user.getUserId());
+        Point existingPoint = pointRepository.findByUserId(user.getUser_id());
 
         if (existingPoint != null) {
             // 기존 포인트에 새로운 포인트 추가
@@ -49,7 +48,7 @@ public class PointServiceImpl implements PointService {
         }
 
         // userId로 기존 사용자 정보 조회
-        Point existingPoint = pointRepository.findByUserId(point.getUserId());
+        Point existingPoint = pointRepository.findByUserId(point.getUser_id());
 
         if (existingPoint != null) {
             // 포인트가 충분한지 확인
@@ -62,7 +61,7 @@ public class PointServiceImpl implements PointService {
             return pointRepository.save(existingPoint); // 업데이트된 포인트 저장
         } else {
             // 사용자가 없으면 IllegalArgumentException 던짐
-            throw new IllegalArgumentException("User not found with ID: " + point.getUserId());
+            throw new IllegalArgumentException("User not found with ID: " + point.getUser_id());
         }
     }
 }

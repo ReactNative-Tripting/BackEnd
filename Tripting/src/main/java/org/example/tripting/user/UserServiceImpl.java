@@ -21,8 +21,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User signup(User user) {
         // 사용자 비밀번호 해싱
-        String hashedPassword = bCryptPasswordEncoder.encode(user.getUserPw());
-        user.setUserPw(hashedPassword);
+        String hashedPassword = bCryptPasswordEncoder.encode(user.getPassword());
+        user.setPassword(hashedPassword);
         // 해싱된 비밀번호를 가진 사용자 객체를 데이터베이스에 저장
         return userRepository.save(user);
     }
@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     public User login(String userId, String password) {
         User user = userRepository.findByUserId(userId);
         // 사용자가 존재하고 비밀번호가 일치하는지 확인
-        if (user != null && bCryptPasswordEncoder.matches(password, user.getUserPw())) {
+        if (user != null && bCryptPasswordEncoder.matches(password, user.getPassword())) {
             return user; // 비밀번호가 일치하면 사용자 객체 반환
         }
         return null; // 아이디나 비밀번호가 일치하지 않는 경우 null 반환
