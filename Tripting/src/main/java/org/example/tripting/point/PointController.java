@@ -1,6 +1,5 @@
 package org.example.tripting.point;
 
-import org.example.tripting.user.User;
 import org.example.tripting.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +18,11 @@ public class PointController {
     public PointController(PointService pointService, UserService userService) {
         this.pointService = pointService;
         this.userService = userService;
+    }
+
+    @GetMapping("/userid/{userId}")
+    public Point getUserByUserId(@PathVariable String userId) {
+        return pointService.getUserByUserId(userId);
     }
 
     // 포인트 적립

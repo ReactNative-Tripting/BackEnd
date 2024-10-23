@@ -1,6 +1,5 @@
 package org.example.tripting.point;
 
-import org.example.tripting.user.User;
 import org.example.tripting.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,24 +46,12 @@ public class PointServiceImpl implements PointService {
         } else { // 포인트를 사용할 경우
             int newTotal = existingPoint.getPoint() - point.getPoint();
             if (newTotal < 0) {
-                throw new IllegalArgumentException("Insufficient points");
+                throw new IllegalArgumentException("포인트가 부족합니다.");
             }
             existingPoint.setPoint(newTotal);
         }
 
         // 업데이트된 포인트 정보를 저장
         return pointRepository.save(existingPoint);
-    }
-
-    // 포인트 적립
-    @Override
-    public Point pointEarn(Point point) {
-        return modifyPoints(point, true);
-    }
-
-    // 포인트 사용
-    @Override
-    public Point pointUse(Point point) {
-        return modifyPoints(point, false);
     }
 }
