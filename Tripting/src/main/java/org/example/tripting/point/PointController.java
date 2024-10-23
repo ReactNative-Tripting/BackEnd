@@ -21,34 +21,21 @@ public class PointController {
         this.userService = userService;
     }
 
-    // 포인트 적립 (PUT 메서드 사용)
+    // 포인트 적립
     @PostMapping("/earn")
     public ResponseEntity<?> pointEarn(@RequestBody Point point) {
         try {
-            // userId를 사용하여 사용자 존재 여부를 확인
-            if (point.getUser() == null || point.getUser().getUserId() == null) {
-                return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
-            }
-
-            // userId로 기존 사용자 정보 조회
-            User user = userService.getUserByUserId(point.getUser().getUserId());
-            if (user == null) {
-                return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
-            }
-
-            Point updatedPoint = pointService.pointEarn(point);
-            return new ResponseEntity<>(updatedPoint, HttpStatus.OK);
+            return new ResponseEntity<>(pointService.modifyPoints(point, true), HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
-    // 포인트 사용 (PUT 메서드 사용)
-    @PutMapping("/use")
+    // 포인트 사용
+    @PostMapping("/use")
     public ResponseEntity<Object> usePoints(@RequestBody Point point) {
         try {
-            Point updatedPoint = pointService.pointUse(point);
-            return new ResponseEntity<>(updatedPoint, HttpStatus.OK);
+            return new ResponseEntity<>(pointService.modifyPoints(point, false), HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
