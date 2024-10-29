@@ -1,6 +1,5 @@
 package org.example.tripting.point;
 
-import org.example.tripting.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +11,11 @@ import org.springframework.web.bind.annotation.*;
 public class PointController {
 
     private final PointService pointService;
-    private final UserService userService;
+
 
     @Autowired
-    public PointController(PointService pointService, UserService userService) {
+    public PointController(PointService pointService) {
         this.pointService = pointService;
-        this.userService = userService;
     }
 
     @GetMapping("/userid/{userId}")

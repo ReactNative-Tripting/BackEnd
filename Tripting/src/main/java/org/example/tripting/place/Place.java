@@ -17,4 +17,5 @@ public class Place {
     private String placeImgUrl; //장소 이미지 URL
     private String address; // 장소 주소
     private String explain; // 장소 설명
+    private String type; //장소 타입
 }
