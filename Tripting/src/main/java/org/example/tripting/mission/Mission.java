@@ -13,7 +13,6 @@ public class Mission {
     @Id
     private String id; //ID
 
-    private String msType; //미션 타입
     private Integer msDifficult; //미션 난이도
-    private Integer pointPerMs; //미션당 포인트
+    private Integer point; //미션당 포인트
 }
