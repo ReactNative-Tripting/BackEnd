@@ -13,7 +13,7 @@ public class Place {
     @Id
     private String ID; //ID
 
-    private String place_name; // 장소 이름
+    private String placeName; // 장소 이름
     private String placeImgUrl; //장소 이미지 URL
     private String address; // 장소 주소
     private String explain; // 장소 설명

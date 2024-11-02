@@ -1,10 +1,8 @@
 package org.example.tripting.place;
 
+import org.example.tripting.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/place")
@@ -17,5 +15,8 @@ public class PlaceController {
 
     @PostMapping("/add")
     public Place add(@RequestBody Place place){ return placeService.add(place); }
+
+    @GetMapping("/placename/{placeName}")
+    public String getPlaceByPlaceName(@PathVariable String placeName) { return placeService.getPlaceByPlaceName(placeName); }
 
 }

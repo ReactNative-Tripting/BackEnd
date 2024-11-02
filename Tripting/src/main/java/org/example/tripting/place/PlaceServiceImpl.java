@@ -1,5 +1,6 @@
 package org.example.tripting.place;
 
+import org.example.tripting.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,12 @@ public class PlaceServiceImpl implements PlaceService {
     @Override
     public  Place add(Place place){
         return placeRepository.save(place);
+    }
+
+    @Override
+    public String getPlaceByPlaceName(String placeName) {
+        Place place = placeRepository.findByPlaceName(placeName);
+        return place != null ? place.getAddress() : null;
     }
 
 }
