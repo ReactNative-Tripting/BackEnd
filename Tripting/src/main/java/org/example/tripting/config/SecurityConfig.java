@@ -31,6 +31,7 @@ public class SecurityConfig {
                                 .requestMatchers( "/users/**").permitAll()
                                 .requestMatchers( "/point/**").permitAll()
                                 .requestMatchers("/place/**").permitAll()
+                                .requestMatchers("/rooms/**").permitAll()
                                 .anyRequest().authenticated()
                 );
         return  http.build();
