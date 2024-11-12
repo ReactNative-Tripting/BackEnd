@@ -25,7 +25,7 @@ public class PointController {
     }
 
     // 포인트 적립
-    @PostMapping("/earn")
+    @PatchMapping("/earn")
     public ResponseEntity<?> pointEarn(@RequestBody Point point) {
         try {
             return new ResponseEntity<>(pointService.modifyPoints(point, true), HttpStatus.OK);
@@ -35,7 +35,7 @@ public class PointController {
     }
 
     // 포인트 사용
-    @PostMapping("/use")
+    @PatchMapping("/use")
     public ResponseEntity<Object> usePoints(@RequestBody Point point) {
         try {
             return new ResponseEntity<>(pointService.modifyPoints(point, false), HttpStatus.OK);

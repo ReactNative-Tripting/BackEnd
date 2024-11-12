@@ -19,6 +19,8 @@
   "sex": "Male"
 }
 ```
+### 회원 삭제
+- **DELETE** `http://localhost:8080/users/delete?userId=test123`
 ### 사용자 조회
 
 - **GET** `http://localhost:8080/users/userid/test123`
@@ -50,7 +52,7 @@
 - **GET** `http://localhost:8080/point/userid/test123`
 
 ### 포인트 적립
-- **POST** `http://localhost:8080/point/earn`
+- **Patch** `http://localhost:8080/point/earn`
 - **Content-Type:** `application/json`
 
 ```json
@@ -63,7 +65,7 @@
 ```
 
 ### 포인트 사용
-- **POST** `http://localhost:8080/point/use`
+- **Patch** `http://localhost:8080/point/use`
 - **Content-Type:** `application/json`
 
 ```json
