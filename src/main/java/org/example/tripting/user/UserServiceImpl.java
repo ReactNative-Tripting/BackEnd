@@ -27,6 +27,16 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
+    //사용자 탈퇴 매서드
+    @Override
+    public void deleteUser(String userId){
+        User user = userRepository.findByUserId(userId);
+        if (user != null) {
+            userRepository.delete(user); // 방 삭제
+        } else {
+            throw new RuntimeException("유저 아이디가 없습니다.");
+        }
+    }
     // 사용자 아이디로 사용자 정보를 가져오는 메서드
     @Override
     public User getUserByUserId(String userId) {

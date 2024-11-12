@@ -24,6 +24,16 @@ public class UserController {
         return userService.signup(user);
     }
 
+    @DeleteMapping("/delete")
+    public ResponseEntity<Void> deleteUser(@RequestParam String userId) {
+        try{
+            userService.deleteUser(userId);
+            return ResponseEntity.noContent().build();
+        } catch (RuntimeException e){
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
+
     // 특정 아이디를 가진 사용자 조회
     @GetMapping("/userid/{userId}")
     public User getUserByUserId(@PathVariable String userId) {

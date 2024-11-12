@@ -5,6 +5,9 @@ public interface UserService {
     // 새로운 사용자 생성
     User signup(User user);
 
+    //사용자 탈퇴
+    void deleteUser(String userId);
+
     // 특정 userID를 가진 사용자 조회
     User getUserByUserId(String userId);
 
