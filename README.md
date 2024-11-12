@@ -119,7 +119,7 @@
 ### 방 삭제
 - **DELETE** `http://localhost:8080/rooms/delete?inviteCode=6a868692`
 ### 방 나가기
-- **POST** `http://localhost:8080/rooms/exit?inviteCode=6a868692&userId=test123`
+- **Delete** `http://localhost:8080/rooms/exit?inviteCode=6a868692&userId=test123`
 
 
 ## 참고사항

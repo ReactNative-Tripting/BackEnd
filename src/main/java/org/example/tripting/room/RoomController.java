@@ -45,7 +45,7 @@ public class RoomController {
         }
     }
 
-    @PostMapping("/exit")
+    @DeleteMapping("/exit")
     public ResponseEntity<Void> exitRoom(@RequestParam String inviteCode, @RequestParam String userId) {
         try {
             roomService.exitRoom(inviteCode, userId);
