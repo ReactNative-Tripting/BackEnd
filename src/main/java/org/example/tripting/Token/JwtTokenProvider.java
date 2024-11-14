@@ -23,7 +23,7 @@ public class JwtTokenProvider {
 
     private String secretKey = "webfirewood";
 
-    private long tokenValidTime = 1000L * 60 * 60 * 24 * 30;     // 토큰 유효시간 한달
+    private long tokenValidTime = 1000L * 60 * 60 * 24 * 30;  // 토큰 유효시간 한달
 
     private final UserDetailsService userDetailsService;
 
@@ -35,14 +35,15 @@ public class JwtTokenProvider {
 
     // 토큰 생성
     public String createToken(String userPk, List<String> roles) {  // userPK = userId
-        Claims claims = Jwts.claims().setSubject(userPk); // JWT payload 에 저장되는 정보단위
-        claims.put("roles", roles); // 정보는 key / value 쌍으로 저장
+        Claims claims = Jwts.claims().setSubject(userPk); // JWT payload에 저장되는 정보 단위
+        claims.put("roles", roles); // 역할(roles)을 claims에 저장
+
         Date now = new Date();
         return Jwts.builder()
                 .setClaims(claims) // 정보 저장
                 .setIssuedAt(now) // 토큰 발행 시간 정보
-                .setExpiration(new Date(now.getTime() + tokenValidTime)) // 토큰 유효시각 설정
-                .signWith(SignatureAlgorithm.HS256, secretKey)  // 암호화 알고리즘과, secret 값
+                .setExpiration(new Date(now.getTime() + tokenValidTime)) // 토큰 유효 시각 설정
+                .signWith(SignatureAlgorithm.HS256, secretKey)  // 암호화 알고리즘과, secret 키
                 .compact();
     }
 
@@ -70,5 +71,14 @@ public class JwtTokenProvider {
     // Request의 Header에서 token 값 가져오기
     public String resolveToken(HttpServletRequest request) {
         return request.getHeader("X-AUTH-TOKEN");
+    }
+
+    // 토큰에서 roles 정보 추출
+    public List<String> getRoles(String token) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(secretKey)
+                .parseClaimsJws(token)
+                .getBody();
+        return (List<String>) claims.get("roles");
     }
 }

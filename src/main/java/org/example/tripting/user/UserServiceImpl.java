@@ -29,14 +29,20 @@ public class UserServiceImpl implements UserService {
         String hashedPassword = bCryptPasswordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
 
-        // 기본 권한을 설정 (예: ROLE_USER)
-        if (user.getRoles() == null || user.getRoles().isEmpty()) {
-            user.setRoles(List.of("ROLE_USER"));
+        // 관리자 역할을 추가할 때
+        if ("admin".equals(user.getUserId())) {  // 예시로 admin 아이디에만 ADMIN 권한 부여
+            user.setRoles(List.of("ROLE_ADMIN"));
+        } else {
+            // 기본 권한을 설정 (예: ROLE_USER)
+            if (user.getRoles() == null || user.getRoles().isEmpty()) {
+                user.setRoles(List.of("ROLE_USER"));
+            }
         }
 
         // 해싱된 비밀번호를 가진 사용자 객체를 데이터베이스에 저장
         return userRepository.save(user);
     }
+
 
 
     //사용자 탈퇴 매서드

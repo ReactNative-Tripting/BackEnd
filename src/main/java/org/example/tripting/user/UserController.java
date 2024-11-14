@@ -54,7 +54,6 @@ public class UserController {
         }
     }
 
-
     // 특정 아이디를 가진 사용자의 존재 여부 확인
     @GetMapping("/userid/{userId}/exists")
     public boolean isUserIdExist(@PathVariable String userId) {
