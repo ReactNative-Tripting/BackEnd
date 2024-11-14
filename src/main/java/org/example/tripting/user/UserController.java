@@ -45,13 +45,15 @@ public class UserController {
     public ResponseEntity<?> login(@RequestBody Map<String, String> credentials) {
         String userId = credentials.get("userId");
         String password = credentials.get("password");
-        User user = userService.login(userId, password);
-        if (user != null) {
-            return ResponseEntity.ok(user);
+        LoginResponse loginResponse = userService.login(userId, password);
+
+        if (loginResponse != null) {
+            return ResponseEntity.ok(loginResponse); // 토큰과 사용자 정보 포함한 응답 반환
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
     }
+
 
     // 특정 아이디를 가진 사용자의 존재 여부 확인
     @GetMapping("/userid/{userId}/exists")

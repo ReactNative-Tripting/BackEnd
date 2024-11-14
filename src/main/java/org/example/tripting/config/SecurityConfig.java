@@ -1,44 +1,53 @@
 package org.example.tripting.config;
 
+import org.example.tripting.Token.JwtAuthenticationFilter;
+import org.example.tripting.Token.JwtTokenProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 
+    private final JwtTokenProvider jwtTokenProvider;
+
+    public SecurityConfig(JwtTokenProvider jwtTokenProvider) {
+        this.jwtTokenProvider = jwtTokenProvider;
+    }
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                //crsf(Cross site Request forgery) 설정 disable
-                .csrf((csrfConfig) ->
-                        csrfConfig.disable()
+                .csrf(AbstractHttpConfigurer::disable)
+                .headers(headers -> headers.frameOptions().disable())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/").permitAll()
+                        .requestMatchers("/users/**").permitAll()
+                        .requestMatchers("/point/**").permitAll()
+                        .requestMatchers("/place/**").permitAll()
+                        .requestMatchers("/rooms/**").permitAll()
+                        .anyRequest().authenticated()
                 )
-                //h2-console 화면을 사용하기 위해 해당옵션 disable
-                .headers((headerConfig) ->
-                        headerConfig.frameOptions(frameOptionsConfig ->
-                                frameOptionsConfig.disable()
-                        )
-                )
-                //권한설정
-                .authorizeHttpRequests((authorizeRequests) ->
-                        authorizeRequests
-                                .requestMatchers( "/").permitAll()
-                                .requestMatchers( "/users/**").permitAll()
-                                .requestMatchers( "/point/**").permitAll()
-                                .requestMatchers("/place/**").permitAll()
-                                .requestMatchers("/rooms/**").permitAll()
-                                .anyRequest().authenticated()
-                );
-        return  http.build();
+                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+        return http.build();
     }
 
     @Bean
     public BCryptPasswordEncoder encode() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManagerBean(HttpSecurity http) throws Exception {
+        return http.getSharedObject(AuthenticationManager.class);
     }
 }
