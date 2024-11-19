@@ -120,7 +120,8 @@
 - **DELETE** `http://localhost:8080/rooms/delete?inviteCode=6a868692`
 ### 방 나가기
 - **Delete** `http://localhost:8080/rooms/exit?inviteCode=6a868692&userId=test123`
-
+### 방 맴버 확인
+- **GET** `http://localhost:8080/rooms/list?inviteCode=6a868692
 
 ## 참고사항
 - **위의 API 호출은 모두 로컬 서버에서 실행된다고 가정합니다.**
