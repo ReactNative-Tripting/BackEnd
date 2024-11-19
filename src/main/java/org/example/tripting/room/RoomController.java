@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -52,6 +53,16 @@ public class RoomController {
             return ResponseEntity.noContent().build(); // 성공적으로 나가면 204 No Content 응답
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(null); // 유효하지 않은 초대 코드면 400 Bad Request 응답
+        }
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<List<String>> getMembers(@RequestParam String inviteCode) {
+        try {
+            List<String> members = roomService.getMembersByInviteCode(inviteCode);
+            return ResponseEntity.ok(members); // 멤버 목록 반환
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(null); // 초대 코드 유효하지 않으면 400 Bad Request 응답
         }
     }
 }

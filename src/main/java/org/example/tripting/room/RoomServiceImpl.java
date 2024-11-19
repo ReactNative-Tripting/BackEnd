@@ -2,7 +2,9 @@ package org.example.tripting.room;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 import java.util.UUID;
+
 @Service
 public class RoomServiceImpl implements RoomService {
 
@@ -57,6 +59,16 @@ public class RoomServiceImpl implements RoomService {
             roomRepository.save(room); // 변경 사항 저장
         } else {
             throw new RuntimeException("초대 코드가 유효하지 않습니다. 방을 찾을 수 없습니다.");
+        }
+    }
+
+    @Override
+    public List<String> getMembersByInviteCode(String inviteCode) {
+        Room room = roomRepository.findByInviteCode(inviteCode);
+        if (room != null) {
+            return room.getMembers(); // 해당 방의 멤버 목록 반환
+        } else {
+            throw new RuntimeException("초대 코드가 유효하지 않습니다.");
         }
     }
 
