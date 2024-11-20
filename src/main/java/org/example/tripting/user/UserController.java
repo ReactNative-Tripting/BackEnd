@@ -3,6 +3,7 @@ package org.example.tripting.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
@@ -36,6 +37,7 @@ public class UserController {
 
     // 특정 아이디를 가진 사용자 조회
     @GetMapping("/userid/{userId}")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public User getUserByUserId(@PathVariable String userId) {
         return userService.getUserByUserId(userId);
     }

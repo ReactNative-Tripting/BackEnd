@@ -28,7 +28,7 @@ public class User implements UserDetails {
     private String id; // MongoDB document ID
 
     private String userId; // 사용자 아이디
-    private String username; // 사용자 이름
+    private String userName; // 사용자 이름
     private String password; // 사용자 비밀번호
     private Integer phoneNum; // 사용자 전화번호
     private String email; // 사용자 이메일

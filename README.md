@@ -12,7 +12,7 @@
 ```json
 {
   "userId": "test123",
-  "username": "HongGildong",
+  "userName": "HongGildong",
   "password": "test123!!",
   "phoneNum": 01012341234,
   "email": "test123@gmail.com",

@@ -18,4 +18,6 @@ public class Place {
     private String address; // 장소 주소
     private String explain; // 장소 설명
     private String type; //장소 타입
+    private String latitude; // 위도
+    private String longitude; // 경도
 }
