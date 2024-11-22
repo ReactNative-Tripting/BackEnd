@@ -18,12 +18,15 @@ public class RoomController {
         this.roomService = roomService;
     }
 
+    // 방 생성 (유저 아이디도 함께 받아서 멤버 목록에 추가)
     @PostMapping("/create")
     public Room createRoom(@RequestBody Map<String, String> request) {
         String roomName = request.get("roomName");
-        return roomService.createRoom(roomName);
+        String userId = request.get("userId");  // 유저 아이디 추가
+        return roomService.createRoom(roomName, userId);  // 유저 아이디를 서비스로 전달
     }
 
+    // 방 삭제
     @DeleteMapping("/delete")
     public ResponseEntity<Void> deleteRoom(@RequestParam String inviteCode) {
         try {
@@ -34,6 +37,7 @@ public class RoomController {
         }
     }
 
+    // 방에 참여
     @PostMapping("/join")
     public ResponseEntity<Room> joinRoom(@RequestBody Map<String, String> request) {
         String inviteCode = request.get("inviteCode");
@@ -46,6 +50,7 @@ public class RoomController {
         }
     }
 
+    // 방에서 나가기
     @DeleteMapping("/exit")
     public ResponseEntity<Void> exitRoom(@RequestParam String inviteCode, @RequestParam String userId) {
         try {
@@ -56,6 +61,7 @@ public class RoomController {
         }
     }
 
+    // 방 멤버 목록 가져오기
     @GetMapping("/list")
     public ResponseEntity<List<String>> getMembers(@RequestParam String inviteCode) {
         try {

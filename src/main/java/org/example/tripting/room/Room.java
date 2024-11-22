@@ -18,8 +18,5 @@ public class Room {
 
     private String roomName;
     private String inviteCode;
-    private List<String> members = new ArrayList<>();;
-
-
-
+    private List<String> members = new ArrayList<>();  // 방 멤버 목록
 }
