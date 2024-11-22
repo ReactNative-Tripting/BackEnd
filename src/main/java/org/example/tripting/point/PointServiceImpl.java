@@ -22,6 +22,13 @@ public class PointServiceImpl implements PointService {
         return pointRepository.findByUserId(userId);
     }
 
+    // 사용자 아이디로 사용자 포인트 정보를 가져오는 메서드
+    @Override
+    public int getUserPointsByUserId(String userId) {
+        Point point = pointRepository.findByUserId(userId);
+        return point != null ? point.getPoint() : 0;  // 포인트 숫자만 반환
+    }
+
     // 포인트 적립 및 사용
     @Override
     public Point modifyPoints(Point point, boolean isEarn) {
