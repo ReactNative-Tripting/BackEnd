@@ -4,11 +4,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +21,13 @@ public class EventServiceImpl implements EventService {
         Event event = new Event();
         List<EventFormat> eventList = new ArrayList<>();
 
+        LocalDate currentDate = LocalDate.now();
 
+        LocalDate date30DaysAfter = currentDate.plusDays(7);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        String formattedToday = currentDate.format(formatter);
+        String formattedAfterDate = date30DaysAfter.format(formatter);
 
         String apiKey = "aXSIJfvKqktsqhBoDMkR3vaqK4OS9eZZ01IOh6UmhGk%2FCUFPKs4LlyafnOAw6zh7%2FsBDMiZyDEXO4nArceMIww%3D%3D";
         String[] sigunguCodeV = {"9", "12"};
@@ -28,7 +36,8 @@ public class EventServiceImpl implements EventService {
                 StringBuilder result = new StringBuilder();
                 String API = "https://apis.data.go.kr/B551011/KorService1/searchFestival1?serviceKey=" + apiKey +
                         "&MobileApp=AppTest&MobileOS=ETC&pageNo=1&numOfRows=10" +
-                        "&eventStartDate=20240101&listYN=Y&arrange=D&areaCode=34" +
+                        "&eventStartDate=" + formattedToday + "&eventEndDate=" + formattedAfterDate +
+                        "&listYN=Y&arrange=D&areaCode=34" +
                         "&sigunguCode=" + sigunguCodeV[i] + "&_type=json";
 
                 URL url = new URL(API);
@@ -65,8 +74,6 @@ public class EventServiceImpl implements EventService {
                     }
                 }
             }
-
-
         } catch (Exception e){
             e.printStackTrace();
         }
