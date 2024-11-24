@@ -68,7 +68,6 @@ public class EventServiceImpl implements EventService {
         } catch (Exception e){
             e.printStackTrace();
         }
-        System.out.println("test");
 
 
         return event;
