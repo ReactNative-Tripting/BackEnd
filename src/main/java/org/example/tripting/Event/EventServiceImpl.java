@@ -17,58 +17,60 @@ public class EventServiceImpl implements EventService {
     @Override
     public Event getEventInfo() {
         Event event = new Event();
+        List<EventFormat> eventList = new ArrayList<>();
 
-        StringBuilder result = new StringBuilder();
+
+
+        String apiKey = "aXSIJfvKqktsqhBoDMkR3vaqK4OS9eZZ01IOh6UmhGk%2FCUFPKs4LlyafnOAw6zh7%2FsBDMiZyDEXO4nArceMIww%3D%3D";
+        String[] sigunguCodeV = {"9", "12"};
         try{
-            String API = "https://apis.data.go.kr/B551011/KorService1/searchFestival1?serviceKey=aXSIJfvKqktsqhBoDMkR3vaqK4OS9eZZ01IOh6UmhGk%2FCUFPKs4LlyafnOAw6zh7%2FsBDMiZyDEXO4nArceMIww%3D%3D&MobileApp=AppTest&MobileOS=ETC&pageNo=1&numOfRows=10&eventStartDate=20240101&listYN=Y&arrange=D&areaCode=34&sigunguCode=9&_type=json";
+            for(int i = 0; i < 2; i++) {
+                StringBuilder result = new StringBuilder();
+                String API = "https://apis.data.go.kr/B551011/KorService1/searchFestival1?serviceKey=" + apiKey +
+                        "&MobileApp=AppTest&MobileOS=ETC&pageNo=1&numOfRows=10" +
+                        "&eventStartDate=20240101&listYN=Y&arrange=D&areaCode=34" +
+                        "&sigunguCode=" + sigunguCodeV[i] + "&_type=json";
 
-            URL url = new URL(API);
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setRequestMethod("GET");
+                URL url = new URL(API);
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestMethod("GET");
 
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), StandardCharsets.UTF_8));
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), StandardCharsets.UTF_8));
 
-            String returnLine;
+                String returnLine;
 
-            while((returnLine= bufferedReader.readLine()) != null) {
-                result.append(returnLine).append("\n");
+                while ((returnLine = bufferedReader.readLine()) != null) {
+                    result.append(returnLine).append("\n");
+                }
+                urlConnection.disconnect();
+
+                ObjectMapper objectMapper = new ObjectMapper();
+                JsonNode rootNode = objectMapper.readTree(result.toString());
+
+                JsonNode itemsNode = rootNode.path("response").path("body").path("items").path("item");
+
+                if (itemsNode.isArray()) {
+                    for (JsonNode item : itemsNode) {
+                        EventFormat newEvent = new EventFormat();
+
+                        newEvent.setTitle(item.path("title").asText());
+                        newEvent.setEventstartdate(item.path("eventstartdate").asText());
+                        newEvent.setEventenddate(item.path("eventenddate").asText());
+                        newEvent.setFirstimage(item.path("firstimage").asText());
+                        newEvent.setMapx(item.path("mapx").asText());
+                        newEvent.setMpay(item.path("mapy").asText());
+                        newEvent.setTel(item.path("tel").asText());
+
+                        eventList.add(newEvent);
+                    }
+                }
             }
-            urlConnection.disconnect();
 
-            ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode rootNode = objectMapper.readTree(result.toString());
 
-            JsonNode itemsNode = rootNode.path("response").path("body").path("items").path("item");
-
-            List<String> titles = new ArrayList<>();
-            List<String> eventstartdates = new ArrayList<>();
-            List<String> eventenddates = new ArrayList<>();
-            List<String> firstimages = new ArrayList<>();
-            List<String> mapxes = new ArrayList<>();
-            List<String> mapyes = new ArrayList<>();
-            List<String> teles = new ArrayList<>();
-
-            for(JsonNode item: itemsNode) {
-                titles.add(item.path("title").asText());
-                eventstartdates.add(item.path("eventstartdate").asText());
-                eventenddates.add(item.path("eventenddate").asText());
-                firstimages.add(item.path("firstimage").asText());
-                mapxes.add(item.path("mapx").asText());
-                mapyes.add(item.path("mapy").asText());
-                teles.add(item.path("tel").asText());
-            }
-
-            event.setTitle(titles);
-            event.setEventstartdate(eventstartdates);
-            event.setEventenddate(eventenddates);
-            event.setFirstimage(firstimages);
-            event.setMapx(mapxes);
-            event.setMpay(mapyes);
-            event.setTel(teles);
         } catch (Exception e){
             e.printStackTrace();
         }
-
+        event.setEventList(eventList);
 
         return event;
     }
