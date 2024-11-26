@@ -33,17 +33,13 @@ public class PointServiceImpl implements PointService {
     @Override
     public Point modifyPoints(Point point, boolean isEarn) {
         // 사용자의 현재 포인트 정보를 가져옴
-        Point existingPoint = pointRepository.findByUserId(point.getUser().getUserId());
+        Point existingPoint = pointRepository.findByUserId(point.getUserId());
 
         if (existingPoint == null) {
             // 기존 포인트 정보가 없으면 새로 생성
             existingPoint = new Point();
-            existingPoint.setUser(userService.getUserByUserId(point.getUser().getUserId())); // 유저 설정
-            existingPoint.setUserId(point.getUser().getUserId()); // userId 설정
+            existingPoint.setUserId(point.getUserId()); // userId 설정
             existingPoint.setPoint(0); // 초기 포인트 설정
-        } else {
-            // existingPoint가 있을 경우 user 설정
-            existingPoint.setUser(userService.getUserByUserId(point.getUser().getUserId())); // 유저 설정
         }
 
         // 포인트를 적립할 경우

@@ -60,9 +60,7 @@
 
 ```json
 {
-  "user": {
-    "userId": "test123"
-  },
+  "userId": "test123",
   "point": 100
 }
 ```
@@ -73,9 +71,7 @@
 
 ```json
 {
-  "user": {
-    "userId": "1123"
-  },
+  "userId": "test123",
   "point": 100
 }
 ```
