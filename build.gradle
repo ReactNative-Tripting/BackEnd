@@ -62,7 +62,9 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
+apply plugin:'war'
 bootWar {  // WAR 파일 패키징을 위한 설정
-    archiveBaseName = 'my-app'
+    archiveBaseName = 'Tripting'
+    archiveFileName = 'Tripting.war'
     version = '0.0.1'
 }
