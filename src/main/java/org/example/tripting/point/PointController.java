@@ -16,6 +16,19 @@ public class PointController {
         this.pointService = pointService;
     }
 
+    //특정 아이디를 가진 사용자 조회
+    @GetMapping("/userid/{userId}")
+    public Point getUserByUserId(@PathVariable String userId) {
+        return pointService.getUserByUserId(userId);
+    }
+
+    // 특정 userID를 가진 사용자 포인트 조회
+    @GetMapping("/userid/{userId}/point")
+    public int getUserPointsByUserId(@PathVariable String userId) {
+        return pointService.getUserPointsByUserId(userId);
+    }
+
+
     // 포인트 적립
     @PatchMapping("/earn")
     public ResponseEntity<?> pointEarn(@RequestBody Point point) {

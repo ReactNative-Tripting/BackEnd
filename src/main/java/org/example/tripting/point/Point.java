@@ -16,9 +16,6 @@ public class Point {
     @Id
     private String id; // ID
 
-    @DocumentReference
-    private User user; // 사용자 객체
-
     private  String userId;
 
     private Integer point; // 사용자 포인트

@@ -129,6 +129,16 @@
 ### 이벤트 정보 확인
 - **GET** http://localhost:8080/Tripting/events/eventinfo
 
+## Storage API
+### 아이템 저장소
+POST http://localhost:8080/storage/add
+```json
+{
+"userId": "test123",
+"item": ["item1","item2"]
+}
+```
+
 ## 참고사항
 - **위의 API 호출은 모두 로컬 서버에서 실행된다고 가정합니다.**
 - **JSON 요청 본문에 포함된 데이터 형식은 정확해야 하며, 적절한 인증 및 권한 부여가 필요할 수 있습니다.**
