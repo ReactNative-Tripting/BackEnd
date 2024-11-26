@@ -51,6 +51,9 @@
 ### 유저 조회
 - **GET** `http://localhost:8080/point/userid/test123`
 
+### 유저 포인트 조회
+- **GET** `http://localhost:8080/point/userid/test123/point`
+
 ### 포인트 적립
 - **Patch** `http://localhost:8080/point/earn`
 - **Content-Type:** `application/json`
@@ -70,8 +73,10 @@
 
 ```json
 {
-  "userId": "user123",
-  "point": 5000
+  "user": {
+    "userId": "1123"
+  },
+  "point": 100
 }
 ```
 
