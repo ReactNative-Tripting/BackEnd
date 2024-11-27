@@ -127,7 +127,7 @@
 
 ## Event API 
 ### 이벤트 정보 확인
-- **GET** http://localhost:8080/Tripting/events/eventinfo
+- **GET** http://localhost:8080/events/eventinfo
 
 ## Storage API
 ### 아이템 저장소
@@ -138,6 +138,11 @@ POST http://localhost:8080/storage/add
 "item": ["item1","item2"]
 }
 ```
+
+## Route API
+### 일정 루트 확인
+- **GET** http://localhost:8080/route/{routeNama}
+
 
 ## 참고사항
 - **위의 API 호출은 모두 로컬 서버에서 실행된다고 가정합니다.**

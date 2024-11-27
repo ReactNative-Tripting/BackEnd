@@ -38,6 +38,7 @@ public class SecurityConfig {
                         .requestMatchers("/rooms/**").permitAll()
                         .requestMatchers("/events/**").permitAll()
                         .requestMatchers("/storage/**").permitAll()
+                        .requestMatchers("/schedules/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
