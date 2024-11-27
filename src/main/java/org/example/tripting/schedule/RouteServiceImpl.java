@@ -18,6 +18,6 @@ public class RouteServiceImpl implements RouteService {
     @Override
     public ArrayList getRouteByRouteName(String routeName) {
         Route route = routeRepository.findByRouteName(routeName);
-        return route != null ? route.getRoute() : null;  // 포인트 숫자만 반환
+        return route != null ? route.getRoute() : null;
     }
 }

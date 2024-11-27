@@ -16,5 +16,5 @@ public class Route {
     private String id;
 
     private String routeName;
-    private ArrayList<String> rorute;
+    private ArrayList<String> route;
 }
