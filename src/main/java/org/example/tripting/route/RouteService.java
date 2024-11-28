@@ -1,4 +1,4 @@
-package org.example.tripting.schedule;
+package org.example.tripting.route;
 
 import java.util.ArrayList;
 

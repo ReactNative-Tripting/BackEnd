@@ -1,4 +1,4 @@
-package org.example.tripting.schedule;
+package org.example.tripting.route;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
