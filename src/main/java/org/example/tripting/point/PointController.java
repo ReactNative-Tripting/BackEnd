@@ -5,13 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-// 사용자 관련 HTTP 요청을 처리하는 컨트롤러
 @RestController
 @RequestMapping("/point")
 public class PointController {
 
     private final PointService pointService;
-
 
     @Autowired
     public PointController(PointService pointService) {
@@ -29,6 +27,7 @@ public class PointController {
     public int getUserPointsByUserId(@PathVariable String userId) {
         return pointService.getUserPointsByUserId(userId);
     }
+
 
     // 포인트 적립
     @PatchMapping("/earn")

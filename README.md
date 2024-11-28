@@ -51,15 +51,16 @@
 ### 유저 조회
 - **GET** `http://localhost:8080/point/userid/test123`
 
+### 유저 포인트 조회
+- **GET** `http://localhost:8080/point/userid/test123/point`
+
 ### 포인트 적립
 - **Patch** `http://localhost:8080/point/earn`
 - **Content-Type:** `application/json`
 
 ```json
 {
-  "user": {
-    "userId": "test123"
-  },
+  "userId": "test123",
   "point": 100
 }
 ```
@@ -70,8 +71,8 @@
 
 ```json
 {
-  "userId": "user123",
-  "point": 5000
+  "userId": "test123",
+  "point": 100
 }
 ```
 
@@ -126,7 +127,22 @@
 
 ## Event API 
 ### 이벤트 정보 확인
-- **GET** http://localhost:8080/Tripting/events/eventinfo
+- **GET** http://localhost:8080/events/eventinfo
+
+## Storage API
+### 아이템 저장소
+POST http://localhost:8080/storage/add
+```json
+{
+"userId": "test123",
+"item": ["item1","item2"]
+}
+```
+
+## Route API
+### 일정 루트 확인
+- **GET** http://localhost:8080/route/{routeNama}
+
 
 ## 참고사항
 - **위의 API 호출은 모두 로컬 서버에서 실행된다고 가정합니다.**

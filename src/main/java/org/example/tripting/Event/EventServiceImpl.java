@@ -39,7 +39,7 @@ public class EventServiceImpl implements EventService {
                 StringBuilder result = new StringBuilder();
                 String API = "https://apis.data.go.kr/B551011/KorService1/searchFestival1?serviceKey=" + apiKey +
                         "&MobileApp=AppTest&MobileOS=ETC&pageNo=1&numOfRows=10" +
-                        "&eventStartDate=" + formattedToday + "&eventEndDate=" + formattedAfterDate +
+                        "&eventStartDate=" + "20241101" + "&eventEndDate=" + formattedAfterDate +
                         "&listYN=Y&arrange=D&areaCode=34" +
                         "&sigunguCode=" + sigunguCodeV[i] + "&_type=json";
 

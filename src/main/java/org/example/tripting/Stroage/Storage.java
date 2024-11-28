@@ -1,22 +1,22 @@
-package org.example.tripting.point;
+package org.example.tripting.Stroage;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.example.tripting.user.User;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.DocumentReference;
+
+import java.util.ArrayList;
 
 // 사용자의 포인트 정보를 나타내는 모델 클래스
-@Document(collection = "Point")
+@Document(collection = "Storage")
 @Getter
 @Setter
-public class Point {
+public class Storage {
 
     @Id
     private String id; // ID
 
     private  String userId;
 
-    private Integer point; // 사용자 포인트
+    private ArrayList<String> items = new ArrayList<>();
 }
