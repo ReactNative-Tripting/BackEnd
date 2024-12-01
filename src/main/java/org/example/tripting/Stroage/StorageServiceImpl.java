@@ -3,6 +3,8 @@ package org.example.tripting.Stroage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
 public class StorageServiceImpl implements StorageService {
 
@@ -28,6 +30,17 @@ public class StorageServiceImpl implements StorageService {
         }
 
         return "Item added to storage successfully";
+    }
+
+    @Override
+    public ArrayList<StorageDTO> selectItemFromStorage(Storage storage){
+        Storage getUserID = storageRepository.findByUserId(storage.getUserId());
+
+        if(getUserID != null){
+            return getUserID.getItems();
+        } else {
+            return new ArrayList<>();
+        }
     }
 }
 

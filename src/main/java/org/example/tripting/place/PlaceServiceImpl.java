@@ -23,5 +23,4 @@ public class PlaceServiceImpl implements PlaceService {
         Place place = placeRepository.findByPlaceName(placeName);
         return place != null ? place.getAddress() : null;
     }
-
 }

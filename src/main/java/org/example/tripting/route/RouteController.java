@@ -1,10 +1,8 @@
 package org.example.tripting.route;
 
+import org.example.tripting.Stroage.StorageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -21,8 +19,8 @@ public class RouteController {
     }
 
     //일정 이름으로 일정 조회
-    @GetMapping("/{routeName}")
-    public ArrayList getRouteByRouteName(@PathVariable String routeName) {
-        return routeService.getRouteByRouteName(routeName);
+    @GetMapping("/type")
+    public ArrayList<RouteDTO> getRouteByRouteName(@RequestParam String type) {
+        return routeService.getRouteByRouteName(type);
     }
 }

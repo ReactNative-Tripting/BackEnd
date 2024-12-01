@@ -18,5 +18,5 @@ public class Storage {
 
     private  String userId;
 
-    private ArrayList<String> items = new ArrayList<>();
+    private ArrayList<StorageDTO> items = new ArrayList<>();
 }

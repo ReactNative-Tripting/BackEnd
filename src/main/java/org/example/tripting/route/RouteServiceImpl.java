@@ -16,8 +16,11 @@ public class RouteServiceImpl implements RouteService {
 
     // 일정 이름으로 일정 리스트 가져오는 메서드
     @Override
-    public ArrayList getRouteByRouteName(String routeName) {
-        Route route = routeRepository.findByRouteName(routeName);
-        return route != null ? route.getRoute() : null;
+    public ArrayList<RouteDTO> getRouteByRouteName(String type) {
+        Route route = routeRepository.findBytype(type);
+        if(route != null) {
+            return route.getRoutes();
+        }
+        return new ArrayList<>();
     }
 }

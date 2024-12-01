@@ -3,6 +3,8 @@ package org.example.tripting.Stroage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 @RestController
 @RequestMapping("/storage")
 public class StorageController {
@@ -20,4 +22,7 @@ public class StorageController {
         return storageService.addItemToStorage(storage);
     }
 
+    //스토리지에 항목 조회
+    @PostMapping("/select")
+    public ArrayList<StorageDTO> selectItemFromStorage(@RequestBody Storage storage) {return storageService.selectItemFromStorage(storage);}
 }
