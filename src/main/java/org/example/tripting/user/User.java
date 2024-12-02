@@ -47,7 +47,7 @@ public class User implements UserDetails {
     // UserDetails 인터페이스 구현을 위해 추가한 메서드들
     @Override
     public String getUsername() {
-        return this.userId;
+        return this.userName;
     }
 
     @Override
