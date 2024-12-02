@@ -123,11 +123,7 @@
 ### 방 나가기
 - **Delete** `http://localhost:8080/rooms/exit?inviteCode=6a868692&userId=test123`
 ### 방 맴버 확인
-- **GET** `http://localhost:8080/rooms/list?inviteCode=6a868692
-
-## Event API 
-### 이벤트 정보 확인
-- **GET** http://localhost:8080/events/eventinfo
+- **GET** `http://localhost:8080/rooms/list?inviteCode=6a868692`
 
 ## Storage API
 ### 아이템 저장소
