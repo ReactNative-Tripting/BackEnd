@@ -39,6 +39,7 @@ public class SecurityConfig {
                         .requestMatchers("/events/**").permitAll()
                         .requestMatchers("/storage/**").permitAll()
                         .requestMatchers("/routes/**").permitAll()
+                        .requestMatchers("/missions/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
