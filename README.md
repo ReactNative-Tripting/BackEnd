@@ -141,7 +141,7 @@ POST http://localhost:8080/storage/add
 
 ## Route API
 ### 일정 루트 확인
-- **GET** http://localhost:8080/route/{routeNama}
+- **GET** http://localhost:8080/routes/{routeNama}
 
 
 ## 참고사항
