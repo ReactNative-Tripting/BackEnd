@@ -139,6 +139,18 @@ POST http://localhost:8080/storage/add
 ### 일정 루트 확인
 - **GET** http://localhost:8080/routes/{routeNama}
 
+## Item API
+### 아이템 추가
+- **POST** http://localhost:8080/Tripting/items
+```json
+{
+"itemId": "test123",
+"itemName": "item1", 
+"itemValue": 150,
+"itemImgUrl" : "test.com"
+}
+```
+
 
 ## 참고사항
 - **위의 API 호출은 모두 로컬 서버에서 실행된다고 가정합니다.**

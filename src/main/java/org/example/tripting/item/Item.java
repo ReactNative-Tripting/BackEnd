@@ -16,6 +16,6 @@ public class Item {
     private String itemId; //상품 ID
 
     private String itemName; //상품명
-    private String itemValue; //상품 가격
+    private Integer itemValue; //상품 가격
     private String itemImgUrl;//아이템 사진 URL
 }
