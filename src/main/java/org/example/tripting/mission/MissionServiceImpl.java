@@ -14,7 +14,6 @@ public class MissionServiceImpl implements MissionService {
 
     @Override
     public List<Mission> getMissionByMission(String type, String area){
-        System.out.println("type : " + type + ", area : " + area);
         List<Mission> mission = missionRepository.findRandomMissionByTypeAndArea(type, area);
         if(mission != null){
             System.out.println("Mission found : " + mission.toString());

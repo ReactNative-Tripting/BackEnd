@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @Setter
 public class EventFormat {
+    private String addr1;
     private String eventstartdate; //행사시작일
     private String eventenddate;  //행사종료일
 

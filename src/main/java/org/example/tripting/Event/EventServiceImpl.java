@@ -65,6 +65,7 @@ public class EventServiceImpl implements EventService {
                     for (JsonNode item : itemsNode) {
                         EventFormat newEvent = new EventFormat();
 
+                        newEvent.setAddr1((item.path("addr1").asText()));
                         newEvent.setTitle(item.path("title").asText());
                         newEvent.setEventstartdate(item.path("eventstartdate").asText());
                         newEvent.setEventenddate(item.path("eventenddate").asText());
