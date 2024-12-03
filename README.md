@@ -6,7 +6,7 @@
 
 ### 회원가입
 
-- **POST** `http://localhost:8080/users`
+- **POST** `http://localhost:8080/Tripting/users`
 - **Content-Type:** `application/json`
 
 ```json
@@ -23,7 +23,7 @@
 - **DELETE** `http://localhost:8080/users/delete?userId=test123`
 ### 사용자 조회
 
-- **GET** `http://localhost:8080/users/userid/test123`
+- **GET** `http://localhost:8080/Tripting/users/userid/test123`
 - **Content-Type:** `application/json`
 
 ```json
@@ -33,7 +33,7 @@
 }
 ```
 ### 로그인
-- **POST** `http://localhost:8080/login`
+- **POST** `http://localhost:8080/Tripting/login`
 - **Content-Type:** `application/json`
 
 ```json
@@ -44,18 +44,18 @@
 ```
 
 ### 존재여부 확인
-- **GET** `http://localhost:8080/users/userid/test123/exists`
+- **GET** `http://localhost:8080/Tripting/users/userid/test123/exists`
 
 ## Point API
 
 ### 유저 조회
-- **GET** `http://localhost:8080/point/userid/test123`
+- **GET** `http://localhost:8080/Tripting/point/userid/test123`
 
 ### 유저 포인트 조회
-- **GET** `http://localhost:8080/point/userid/test123/point`
+- **GET** `http://localhost:8080/Tripting/point/userid/test123/point`
 
 ### 포인트 적립
-- **Patch** `http://localhost:8080/point/earn`
+- **Patch** `http://localhost:8080/Tripting/point/earn`
 - **Content-Type:** `application/json`
 
 ```json
@@ -66,7 +66,7 @@
 ```
 
 ### 포인트 사용
-- **Patch** `http://localhost:8080/point/use`
+- **Patch** `http://localhost:8080/Tripting/point/use`
 - **Content-Type:** `application/json`
 
 ```json
@@ -79,7 +79,7 @@
 ## Place API
 
 ### 장소 등록
-- **POST** `http://localhost:8080/place/add`
+- **POST** `http://localhost:8080/Tripting/place/add`
 - **Content-Type:** `application/json`
 
 ```json
@@ -93,12 +93,12 @@
 ```
 
 ### 주소 조회
-- **GET** `http://localhost:8080/place/placename/천안종합운동장`
+- **GET** `http://localhost:8080/Tripting/place/placename/천안종합운동장`
 
 ## Room API
 
 ### 방 생성
-- **POST** `http://localhost:8080/rooms/create`
+- **POST** `http://localhost:8080/Tripting/rooms/create`
 - **Content-Type:** `application/json`
 
 ```json
@@ -109,7 +109,7 @@
 ```
 
 ### 방 입장
-- **POST** `http://localhost:8080/rooms/join`
+- **POST** `http://localhost:8080/Tripting/rooms/join`
 - **Content-Type:** `application/json`
 
 ```json
@@ -119,15 +119,15 @@
 }
 ```
 ### 방 삭제
-- **DELETE** `http://localhost:8080/rooms/delete?inviteCode=6a868692`
+- **DELETE** `http://localhost:8080/Tripting/rooms/delete?inviteCode=6a868692`
 ### 방 나가기
-- **Delete** `http://localhost:8080/rooms/exit?inviteCode=6a868692&userId=test123`
+- **Delete** `http://localhost:8080/Tripting/rooms/exit?inviteCode=6a868692&userId=test123`
 ### 방 맴버 확인
-- **GET** `http://localhost:8080/rooms/list?inviteCode=6a868692`
+- **GET** `http://localhost:8080/Tripting/rooms/list?inviteCode=6a868692`
 
 ## Storage API
 ### 아이템 저장소
-POST http://localhost:8080/storage/add
+- **POST** `http://localhost:8080/Tripting/storage/add`
 ```json
 {
 "userId": "test123",
@@ -137,11 +137,11 @@ POST http://localhost:8080/storage/add
 
 ## Route API
 ### 일정 루트 확인
-- **GET** http://localhost:8080/routes/{routeNama}
+- **GET** `http://localhost:8080/Tripting/routes/{routeNama}`
 
 ## Item API
 ### 아이템 추가
-- **POST** http://localhost:8080/Tripting/items
+- **POST** `http://localhost:8080/Tripting/items`
 ```json
 {
 "itemId": "test123",
