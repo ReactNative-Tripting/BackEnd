@@ -2,5 +2,7 @@ package org.example.tripting.item;
 
 public interface ItemService {
 
-    Item add(Item item);
+    Item addItem(Item item);
+
+    void deleteItem(String itemId);
 }

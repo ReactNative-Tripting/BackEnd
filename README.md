@@ -151,6 +151,8 @@ POST http://localhost:8080/storage/add
 }
 ```
 
+### 아이템 삭제 
+- **DELETE** http://localhost:8080/Tripting/items/test123
 
 ## 참고사항
 - **위의 API 호출은 모두 로컬 서버에서 실행된다고 가정합니다.**
